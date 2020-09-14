@@ -3,13 +3,25 @@
     <div class="card">
       <div class="card-body">
         <h4 class="card-title">Progress</h4>
-        <div
-          class="progress-bar bg-primary active progress-bar-striped active"
-          style="height: 12px"
-          [style.width]="getProgress"
-          role="progressbar"
-        >
-          <span class="sr-only">60% Complete</span>
+        <div class="progress m-t-20">
+          <div
+            class="progress-bar bg-success active progress-bar-striped active"
+            style="height: 12px"
+            [style.width]="getProgress1"
+            role="progressbar"
+          >
+            <span class="sr-only">60% Complete</span>
+          </div>
+        </div>
+        <div class="progress m-t-20">
+          <div
+            class="progress-bar bg-primary active progress-bar-striped active"
+            style="height: 12px"
+            [style.width]="getProgress2"
+            role="progressbar"
+          >
+            <span class="sr-only">60% Complete</span>
+          </div>
         </div>
       </div>
     </div>
@@ -19,14 +31,22 @@
   <div class="col-6">
     <div class="card">
       <div class="card-body">
-        <app-incrementator></app-incrementator>
+        <app-incrementator
+          (exitValue)="progress1 = $event"
+          [progress]="progress1"
+          [btnClass]="'btn btn-success'"
+        ></app-incrementator>
       </div>
     </div>
   </div>
   <div class="col-6">
     <div class="card">
       <div class="card-body">
-        <app-incrementator></app-incrementator>
+        <app-incrementator
+          (exitValue)="progress2 = $event"
+          [progress]="progress2"
+          [btnClass]="'btn btn-primary'"
+        ></app-incrementator>
       </div>
     </div>
   </div>

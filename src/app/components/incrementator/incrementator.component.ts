@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, EventEmitter, Output } from "@angular/core";
 
 @Component({
   selector: "app-incrementator",
@@ -6,21 +6,24 @@ import { Component, OnInit } from "@angular/core";
   styles: [],
 })
 export class IncrementatorComponent {
-  progress = 50;
+  @Input() progress = 50;
+  @Input() btnClass = "btn btn-primary";
+  @Output() exitValue: EventEmitter<number> = new EventEmitter();
 
   constructor() {}
 
-  changeProgress(n: number) {
-    if (this.progress >= 100 && n > 0) {
+  changeProgress(value: number) {
+    if (this.progress >= 100 && value > 0) {
+      this.progress = 100;
+      this.exitValue.emit(100);
       return;
     }
-    if (this.progress <= 0 && n < 0) {
+    if (this.progress <= 0 && value < 0) {
+      this.progress = 0;
+      this.exitValue.emit(0);
       return;
     }
-    this.progress = this.progress + n;
-  }
-
-  get getProgress() {
-    return this.progress + "%";
+    this.progress = this.progress + value;
+    this.exitValue.emit(this.progress);
   }
 }
