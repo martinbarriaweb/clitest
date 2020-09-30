@@ -16,5 +16,6 @@ export class PagesComponent implements OnInit {
   setTheme() {
     const theme = localStorage.getItem("theme") || "purple";
     this.linkTheme.setAttribute("href", `./assets/css/colors/${theme}.css`);
+    localStorage.setItem("theme", theme);
   }
 }
